@@ -8,12 +8,68 @@
 <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="preloader-active">
+
+<!-- ===== Preloader ===== -->
+<div id="preloader" class="preloader" aria-hidden="true">
+  <div class="preloader-emblem">
+    <div class="preloader-glow"></div>
+    <div class="preloader-orbit"></div>
+    <img src="images/logo.svg" alt="" class="preloader-logo">
+    <span class="preloader-symbol sym-1">{</span>
+    <span class="preloader-symbol sym-2">}</span>
+    <span class="preloader-symbol sym-3">;</span>
+    <span class="preloader-symbol sym-4">&lt;/&gt;</span>
+  </div>
+
+  <h1 class="preloader-name">
+    <span data-en="Qatadah" data-ar="قتادة">Qatadah</span>
+    <span class="accent-text" data-en="Iqtail" data-ar="اقطيل">Iqtail</span>
+  </h1>
+  <p class="preloader-subtitle" data-en="Software Engineer — Portfolio" data-ar="مهندس برمجيات — ملف الأعمال">Software Engineer — Portfolio</p>
+
+  <div class="preloader-stats">
+    <div class="preloader-stat">
+      <span class="preloader-stat-num" data-count="6">0</span>
+      <span class="preloader-stat-label" data-en="Projects" data-ar="مشاريع">Projects</span>
+    </div>
+    <div class="preloader-stat">
+      <span class="preloader-stat-num" data-count="2">0</span>
+      <span class="preloader-stat-label" data-en="Trainings" data-ar="تدريبات">Trainings</span>
+    </div>
+    <div class="preloader-stat">
+      <span class="preloader-stat-num preloader-stat-static">2025</span>
+      <span class="preloader-stat-label" data-en="Graduate" data-ar="سنة التخرج">Graduate</span>
+    </div>
+  </div>
+
+  <p class="preloader-loading-text">
+    <span class="preloader-caret">&gt;</span><span id="preloaderLoadingWord">Compiling experience</span><span class="preloader-dots"><span>.</span><span>.</span><span>.</span></span>
+  </p>
+
+  <div class="preloader-progress"><div class="preloader-progress-bar" id="preloaderProgressBar"></div></div>
+</div>
+<script>
+(function () {
+  try {
+    if (sessionStorage.getItem('preloaderShown') === '1') {
+      var pl = document.getElementById('preloader');
+      if (pl) { pl.style.display = 'none'; }
+      document.body.classList.remove('preloader-active');
+    }
+  } catch (e) {}
+})();
+</script>
+
+<!-- ===== Scroll Progress Bar ===== -->
+<div class="scroll-progress" aria-hidden="true">
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+</div>
 
 <!-- ===== Navbar ===== -->
 <nav class="navbar" id="navbar">
@@ -73,6 +129,9 @@
       <div class="about-text">
         <p data-en="I'm a Web Development Trainee who enjoys turning ideas into clean, functional web applications. I focus on writing practical code, learning by building real projects, and I'm currently exploring how AI tools like Claude can support and speed up the development process." data-ar="أنا متدرب تطوير ويب أستمتع بتحويل الأفكار إلى تطبيقات ويب عملية ومنظمة. أركّز على كتابة كود عملي والتعلم من خلال بناء مشاريع حقيقية، وأستكشف حالياً كيف يمكن لأدوات الذكاء الاصطناعي مثل Claude أن تدعم وتسرّع عملية التطوير.">
           I'm a Web Development Trainee who enjoys turning ideas into clean, functional web applications. I focus on writing practical code, learning by building real projects, and I'm currently exploring how AI tools like Claude can support and speed up the development process.
+        </p>
+        <p data-en="I build my projects using Claude Code as an AI pair programmer: I design the system, make the architecture decisions, and review every step before it ships." data-ar="أبني مشاريعي باستخدام Claude Code كشريك برمجة بالذكاء الاصطناعي: أصمم النظام، وأتخذ قرارات البنية، وأراجع كل خطوة قبل اعتمادها.">
+          I build my projects using Claude Code as an AI pair programmer: I design the system, make the architecture decisions, and review every step before it ships.
         </p>
       </div>
 
@@ -239,6 +298,8 @@
           <span class="skill-tag">Vercel</span>
           <span class="skill-tag">Claude AI</span>
           <span class="skill-tag">Claude Code</span>
+          <span class="skill-tag">AI-Assisted Development</span>
+          <span class="skill-tag">Prompt Engineering</span>
         </div>
       </div>
 
@@ -266,20 +327,52 @@
     <div class="projects-grid">
 
       <div class="project-card card reveal">
-        <div class="project-image project-icon-wrap">
-          <i class="fa-solid fa-apple-whole project-icon"></i>
+        <div class="project-image project-cover cover-nutrilife">
+          <div class="project-cover-art" aria-hidden="true">
+            <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <g transform="translate(-11 0)">
+                <path d="M80 46 C68 38 50 44 50 64 C50 84 64 98 74 98 C77 98 78 96 80 96 C82 96 83 98 86 98 C96 98 110 84 110 64 C110 44 92 38 80 46 Z"/>
+                <path d="M80 46 C80 38 82 32 86 28"/>
+                <path d="M84 36 C90 26 102 26 106 30 C100 38 90 40 84 36 Z"/>
+                <path d="M124 40 V96 H174"/>
+                <polyline points="132,86 144,72 156,78 168,56"/>
+                <circle cx="132" cy="86" r="2.5" fill="currentColor"/>
+                <circle cx="144" cy="72" r="2.5" fill="currentColor"/>
+                <circle cx="156" cy="78" r="2.5" fill="currentColor"/>
+                <circle cx="168" cy="56" r="2.5" fill="currentColor"/>
+              </g>
+            </svg>
+          </div>
+          <span class="project-cover-label" aria-hidden="true" data-en="NutriLife" data-ar="نيوتري لايف">NutriLife</span>
+          <img src="images/projects/nutrilife.png" alt="NutriLife" loading="lazy" onerror="this.remove()">
         </div>
         <div class="project-body">
+          <span class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i><span data-en="Built with Claude Code" data-ar="بُني باستخدام Claude Code">Built with Claude Code</span></span>
           <h3 class="project-title" data-en="NutriLife (Graduation Project)" data-ar="نيوتري لايف (مشروع التخرج)">NutriLife (Graduation Project)</h3>
           <p class="project-desc" data-en="Full-stack mobile nutrition app for personalized diet plans, progress tracking and user-nutritionist communication." data-ar="تطبيق جوال متكامل للتغذية، يقدّم خطط غذائية مخصصة، متابعة للتقدم، وتواصلاً بين المستخدم وأخصائي التغذية.">Full-stack mobile nutrition app for personalized diet plans, progress tracking and user-nutritionist communication.</p>
         </div>
       </div>
 
       <div class="project-card card reveal">
-        <div class="project-image project-icon-wrap">
-          <i class="fa-solid fa-car project-icon"></i>
+        <div class="project-image project-cover cover-wasel">
+          <div class="project-cover-art" aria-hidden="true">
+            <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M30 102 H128 Q156 102 160 76" stroke-dasharray="4 7"/>
+              <path d="M52 84 H40 V74 Q40 70 44 70 L56 68 L68 54 H100 L114 68 L122 70 Q126 71 126 76 V84 H118"/>
+              <path d="M68 84 H100"/>
+              <path d="M70 58 H97 L105 67 H63 Z"/>
+              <path d="M85 58 V67"/>
+              <circle cx="60" cy="84" r="8"/>
+              <circle cx="108" cy="84" r="8"/>
+              <path d="M160 70 C150 60 146 52 146 46 A14 14 0 0 1 174 46 C174 52 170 60 160 70 Z"/>
+              <circle cx="160" cy="46" r="5"/>
+            </svg>
+          </div>
+          <span class="project-cover-label" aria-hidden="true" data-en="Wasel" data-ar="واصل">Wasel</span>
+          <img src="images/projects/wasel.png" alt="Wasel" loading="lazy" onerror="this.remove()">
         </div>
         <div class="project-body">
+          <span class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i><span data-en="Built with Claude Code" data-ar="بُني باستخدام Claude Code">Built with Claude Code</span></span>
           <h3 class="project-title" data-en="Wasel (Transportation App, Qatar)" data-ar="واصل (تطبيق نقل، قطر)">Wasel (Transportation App, Qatar)</h3>
           <p class="project-desc" data-en="Transportation app for Qatar built with Claude AI, featuring driver and rider registration with authentication and role-based sign-up." data-ar="تطبيق نقل في قطر تم بناؤه باستخدام Claude AI، يشمل تسجيل السائقين والركاب مع مصادقة وتسجيل حسب الدور.">Transportation app for Qatar built with Claude AI, featuring driver and rider registration with authentication and role-based sign-up.</p>
           <p class="project-tech">Claude AI</p>
@@ -287,10 +380,21 @@
       </div>
 
       <div class="project-card card reveal">
-        <div class="project-image">
-          <img src="images/projects/triage.png" alt="Symptom Triage Assistant" loading="lazy">
+        <div class="project-image project-cover cover-triage">
+          <div class="project-cover-art" aria-hidden="true">
+            <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="50" y="24" width="100" height="64" rx="6"/>
+              <polyline points="58,64 78,64 84,54 90,74 97,38 104,70 109,64 142,64"/>
+              <path d="M132 32 V44 M126 38 H138"/>
+              <path d="M100 88 V100"/>
+              <path d="M84 102 H116"/>
+            </svg>
+          </div>
+          <span class="project-cover-label" aria-hidden="true" data-en="Symptom Triage" data-ar="فرز الأعراض">Symptom Triage</span>
+          <img src="images/projects/triage.png" alt="Symptom Triage Assistant" loading="lazy" onerror="this.remove()">
         </div>
         <div class="project-body">
+          <span class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i><span data-en="Built with Claude Code" data-ar="بُني باستخدام Claude Code">Built with Claude Code</span></span>
           <h3 class="project-title" data-en="Symptom Triage Assistant" data-ar="مساعد فرز الأعراض">Symptom Triage Assistant</h3>
           <p class="project-desc" data-en="Decision-support tool for patient triage. A rule engine classifies each visit into levels 1-5, and Claude AI writes a plain-language explanation. Includes role-based access and doctor orders routed to pharmacy, lab and radiology." data-ar="أداة لدعم قرار فرز المرضى، محرك قواعد يصنّف كل زيارة من مستوى 1 إلى 5، وClaude يكتب شرحاً مبسطاً. تشمل صلاحيات حسب الدور وتحويل طلبات الطبيب للصيدلية والمختبر والأشعة.">Decision-support tool for patient triage. A rule engine classifies each visit into levels 1-5, and Claude AI writes a plain-language explanation. Includes role-based access and doctor orders routed to pharmacy, lab and radiology.</p>
           <p class="project-tech">ASP.NET Core • Angular • SQL Server • Claude API</p>
@@ -298,10 +402,28 @@
       </div>
 
       <div class="project-card card reveal">
-        <div class="project-image">
-          <img src="images/projects/helpdesk.png" alt="IT Helpdesk Ticketing System" loading="lazy">
+        <div class="project-image project-cover cover-helpdesk">
+          <div class="project-cover-art" aria-hidden="true">
+            <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <g transform="translate(-6 0)">
+                <path d="M50 66 V60 A25 25 0 0 1 100 60 V66"/>
+                <rect x="44" y="62" width="12" height="22" rx="5"/>
+                <rect x="94" y="62" width="12" height="22" rx="5"/>
+                <path d="M100 84 Q100 98 82 98 H77"/>
+                <circle cx="74" cy="98" r="3"/>
+                <path d="M118 40 H168 V54 A6 6 0 0 0 168 66 V84 H118 V66 A6 6 0 0 0 118 54 Z"/>
+                <path d="M150 44 V80" stroke-dasharray="3 4"/>
+                <path d="M128 54 H142"/>
+                <path d="M128 62 H140"/>
+                <path d="M128 70 H138"/>
+              </g>
+            </svg>
+          </div>
+          <span class="project-cover-label" aria-hidden="true" data-en="IT Helpdesk" data-ar="الدعم الفني">IT Helpdesk</span>
+          <img src="images/projects/helpdesk.png" alt="IT Helpdesk Ticketing System" loading="lazy" onerror="this.remove()">
         </div>
         <div class="project-body">
+          <span class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i><span data-en="Built with Claude Code" data-ar="بُني باستخدام Claude Code">Built with Claude Code</span></span>
           <h3 class="project-title" data-en="IT Helpdesk Ticketing System" data-ar="نظام تذاكر الدعم الفني">IT Helpdesk Ticketing System</h3>
           <p class="project-desc" data-en="Internal ticketing system for hospital staff with categories, comments, attachments, escalation and bulk actions for the support team." data-ar="نظام تذاكر داخلي لموظفي المستشفى مع تصنيفات وتعليقات ومرفقات وتصعيد وإجراءات جماعية لفريق الدعم.">Internal ticketing system for hospital staff with categories, comments, attachments, escalation and bulk actions for the support team.</p>
           <p class="project-tech">.NET Core • Angular • SQL Server • EF Core</p>
@@ -309,10 +431,26 @@
       </div>
 
       <div class="project-card card reveal">
-        <div class="project-image">
-          <img src="images/projects/leave.png" alt="Leave Management System" loading="lazy">
+        <div class="project-image project-cover cover-leave">
+          <div class="project-cover-art" aria-hidden="true">
+            <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="60" y="28" width="80" height="70" rx="8"/>
+              <path d="M60 46 H140"/>
+              <path d="M80 22 V34"/>
+              <path d="M120 22 V34"/>
+              <path d="M73 62 L77 66 L85 58"/>
+              <path d="M95 62 L99 66 L107 58"/>
+              <path d="M117 62 L121 66 L129 58"/>
+              <path d="M73 82 L77 86 L85 78"/>
+              <circle cx="100" cy="82" r="2" fill="currentColor"/>
+              <circle cx="122" cy="82" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <span class="project-cover-label" aria-hidden="true" data-en="Leave Management" data-ar="إدارة الإجازات">Leave Management</span>
+          <img src="images/projects/leave.png" alt="Leave Management System" loading="lazy" onerror="this.remove()">
         </div>
         <div class="project-body">
+          <span class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i><span data-en="Built with Claude Code" data-ar="بُني باستخدام Claude Code">Built with Claude Code</span></span>
           <h3 class="project-title" data-en="Leave Management System" data-ar="نظام إدارة الإجازات">Leave Management System</h3>
           <p class="project-desc" data-en="Leave requests with approval workflow, role-based login, balance carry-over, half-day leave and public holiday awareness." data-ar="طلبات إجازة مع مسار موافقات، تسجيل دخول حسب الدور، ترحيل الرصيد، إجازة نصف يوم ومراعاة العطل الرسمية.">Leave requests with approval workflow, role-based login, balance carry-over, half-day leave and public holiday awareness.</p>
           <p class="project-tech">.NET Core • Angular • SQL Server • JWT</p>
@@ -320,10 +458,41 @@
       </div>
 
       <div class="project-card card reveal">
-        <div class="project-image">
-          <img src="images/projects/qr.png" alt="QR Restaurant Ordering" loading="lazy">
+        <div class="project-image project-cover cover-qr">
+          <div class="project-cover-art" aria-hidden="true">
+            <svg viewBox="0 0 200 120" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="30" y="30" width="18" height="18" rx="2"/>
+              <rect x="72" y="30" width="18" height="18" rx="2"/>
+              <rect x="30" y="72" width="18" height="18" rx="2"/>
+              <g fill="currentColor" stroke="none">
+                <rect x="35" y="35" width="8" height="8"/>
+                <rect x="77" y="35" width="8" height="8"/>
+                <rect x="35" y="77" width="8" height="8"/>
+                <rect x="54" y="32" width="5" height="5"/>
+                <rect x="60" y="40" width="5" height="5"/>
+                <rect x="52" y="48" width="5" height="5"/>
+                <rect x="64" y="52" width="5" height="5"/>
+                <rect x="78" y="54" width="5" height="5"/>
+                <rect x="84" y="62" width="5" height="5"/>
+                <rect x="56" y="60" width="5" height="5"/>
+                <rect x="74" y="70" width="5" height="5"/>
+                <rect x="82" y="78" width="5" height="5"/>
+                <rect x="62" y="78" width="5" height="5"/>
+                <rect x="54" y="70" width="5" height="5"/>
+                <rect x="66" y="85" width="5" height="5"/>
+              </g>
+              <path d="M98 44 V54 Q98 58 102 58 Q106 58 106 54 V44"/>
+              <path d="M102 44 V88"/>
+              <circle cx="140" cy="66" r="26"/>
+              <circle cx="140" cy="66" r="17"/>
+              <path d="M176 88 V44 Q182 50 182 62 H176"/>
+            </svg>
+          </div>
+          <span class="project-cover-label" aria-hidden="true" data-en="QR Ordering" data-ar="الطلب عبر QR">QR Ordering</span>
+          <img src="images/projects/qr.png" alt="QR Restaurant Ordering" loading="lazy" onerror="this.remove()">
         </div>
         <div class="project-body">
+          <span class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i><span data-en="Built with Claude Code" data-ar="بُني باستخدام Claude Code">Built with Claude Code</span></span>
           <h3 class="project-title" data-en="QR Restaurant Ordering" data-ar="نظام الطلب عبر QR للمطاعم">QR Restaurant Ordering</h3>
           <p class="project-desc" data-en="Customers scan a table QR code to browse the menu and place orders." data-ar="يمسح الزبون رمز QR على الطاولة ليتصفح القائمة ويطلب مباشرة.">Customers scan a table QR code to browse the menu and place orders.</p>
         </div>
